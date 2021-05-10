@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.mediapicker.gallery.Gallery
 import com.mediapicker.gallery.GalleryConfig
 import com.mediapicker.gallery.domain.contract.IGalleryCommunicator
+import com.mediapicker.gallery.domain.contract.TrackedEvent
 import com.mediapicker.gallery.domain.entity.*
 import com.mediapicker.gallery.presentation.fragments.HomeFragment
 import com.mediapicker.gallery.presentation.utils.DefaultPage
@@ -126,6 +127,18 @@ class MainActivity : AppCompatActivity() {
 
         override fun onNeverAskPermissionAgain() {
             Toast.makeText(applicationContext,"Permission denied :(",Toast.LENGTH_LONG).show()
+        }
+
+        override fun onImageItemSelected(photoFile: PhotoFile, isSelected: Boolean) {
+
+        }
+
+        override fun trackCarousalEvent(trackedEvent: TrackedEvent) {
+            when(trackedEvent) {
+                is TrackedEvent.GalleryFolderSelectEvent -> {}
+                is TrackedEvent.GalleryImagePreview -> {}
+                is TrackedEvent.GalleryPreviewImageChanged -> {}
+            }
         }
     }
 

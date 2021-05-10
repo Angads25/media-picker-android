@@ -24,6 +24,10 @@ interface IGalleryCommunicator{
     fun onPermissionDenied()
 
     fun onNeverAskPermissionAgain()
+
+    fun onImageItemSelected(photoFile: PhotoFile, isSelected: Boolean)
+
+    fun trackCarousalEvent(trackedEvent: TrackedEvent)
 }
 
 internal interface GalleryPagerCommunicator {
@@ -70,4 +74,18 @@ internal class GalleryCommunicatorDefaultImpl : IGalleryCommunicator{
     override fun onNeverAskPermissionAgain() {
       //Need Implementation
     }
+
+    override fun onImageItemSelected(photoFile: PhotoFile, isSelected: Boolean) {
+        //Need Implementation
+    }
+
+    override fun trackCarousalEvent(trackedEvent: TrackedEvent) {
+        //Need Implementation
+    }
+}
+
+sealed class TrackedEvent {
+    object GalleryImagePreview: TrackedEvent()
+    object GalleryFolderSelectEvent: TrackedEvent()
+    object GalleryPreviewImageChanged: TrackedEvent()
 }

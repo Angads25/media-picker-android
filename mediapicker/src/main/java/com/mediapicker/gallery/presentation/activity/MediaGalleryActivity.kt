@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.mediapicker.gallery.Gallery
 import com.mediapicker.gallery.R
+import com.mediapicker.gallery.domain.contract.TrackedEvent
 import com.mediapicker.gallery.domain.entity.MediaGalleryEntity
 import com.mediapicker.gallery.presentation.carousalview.MediaGalleryPagerView
 import kotlinx.android.synthetic.main.oss_media_gallery_activity.*
@@ -82,6 +83,6 @@ class MediaGalleryActivity : AppCompatActivity(), View.OnClickListener,
     }
 
     override fun onMediaChanged(mediaPosition: Int) {
-        Gallery.carousalActionListener?.onGalleryImagePreviewChanged()
+        Gallery.galleryConfig.galleryCommunicator.trackCarousalEvent(TrackedEvent.GalleryPreviewImageChanged)
     }
 }

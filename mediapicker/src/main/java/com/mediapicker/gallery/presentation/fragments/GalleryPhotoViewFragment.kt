@@ -36,7 +36,7 @@ class GalleryPhotoViewFragment : BaseGalleryViewFragment() {
 
     private fun removePhotoFromSelection(photo: PhotoFile, position: Int) {
         currentSelectedPhotos.removePhoto(photo)
-        Gallery.carousalActionListener?.onItemClicked(photo, false)
+        Gallery.galleryConfig.galleryCommunicator.onImageItemSelected(photo, false)
         adapter.listCurrentPhotos = currentSelectedPhotos.toList()
         adapter.notifyDataSetChanged()
     }
@@ -75,7 +75,7 @@ class GalleryPhotoViewFragment : BaseGalleryViewFragment() {
         when(val validationResult = photoValidationAction.canAddThisToList(currentSelectedPhotos.size, photo)){
             is ValidationResult.Success -> {
                 galleryActionListener?.onPhotoSelected(photo)
-                Gallery.carousalActionListener?.onItemClicked(photo, true)
+                Gallery.galleryConfig.galleryCommunicator.onImageItemSelected(photo, true)
                 adapter.listCurrentPhotos = currentSelectedPhotos.toList()
                 adapter.notifyDataSetChanged()
             }

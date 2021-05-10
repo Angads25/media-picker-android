@@ -173,7 +173,7 @@ open class PhotoGridFragment : BaseViewPagerItemFragment() {
             currentSelectedPhotos.add(photo)
             listCurrentPhotos.add(photo)
             Gallery.pagerCommunicator?.onItemClicked(photo, true)
-            Gallery.carousalActionListener?.onItemClicked(photo, true)
+            Gallery.galleryConfig.galleryCommunicator.onImageItemSelected(photo, true)
             updateData(position)
         }
     }
@@ -205,7 +205,7 @@ open class PhotoGridFragment : BaseViewPagerItemFragment() {
             currentSelectedPhotos.removePhoto(photo)
             removeFromList(photo)
             Gallery.pagerCommunicator?.onItemClicked(photo, false)
-            Gallery.carousalActionListener?.onItemClicked(photo, false)
+            Gallery.galleryConfig.galleryCommunicator.onImageItemSelected(photo, false)
             updateData(position)
         }
     }
@@ -234,7 +234,7 @@ open class PhotoGridFragment : BaseViewPagerItemFragment() {
     fun onImageAdded(fragmentName: String, photo: PhotoFile): Boolean {
         addItem(photo)
         Gallery.pagerCommunicator?.onItemClicked(photo, true)
-        Gallery.carousalActionListener?.onItemClicked(photo, true)
+        Gallery.galleryConfig.galleryCommunicator.onImageItemSelected(photo, true)
         //trackingService.postingPictureComplete()
         return true
     }

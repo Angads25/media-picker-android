@@ -6,6 +6,7 @@ import com.mediapicker.gallery.Gallery
 import com.mediapicker.gallery.R
 import com.mediapicker.gallery.data.repositories.GalleryService
 import com.mediapicker.gallery.domain.contract.OnItemClickListener
+import com.mediapicker.gallery.domain.contract.TrackedEvent
 import com.mediapicker.gallery.domain.entity.PhotoAlbum
 import com.mediapicker.gallery.presentation.adapters.GalleryFolderAdapter
 import com.mediapicker.gallery.presentation.utils.ItemDecorationAlbumColumns
@@ -61,7 +62,7 @@ class FolderViewFragment : BaseGalleryViewFragment(), OnItemClickListener<PhotoA
 
     private fun openPhotoGridFragment(photo: PhotoAlbum) {
         galleryActionListener?.moveToPhotoGrid(photo)
-        Gallery.carousalActionListener?.onGalleryFolderSelected()
+        Gallery.galleryConfig.galleryCommunicator.trackCarousalEvent(TrackedEvent.GalleryFolderSelectEvent)
     }
 
     override fun onActionButtonClick() {
